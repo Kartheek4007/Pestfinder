@@ -26,7 +26,7 @@ export const crops: Crop[] = [
     scientificName: "Lactuca sativa",
     family: "Asteraceae",
     description: "Lettuce is a cool-season leafy vegetable that comes in many varieties, including loose-leaf, butterhead, romaine, and crisphead types. It's fast-growing and perfect for early spring or fall gardens.",
-    imageUrl: "https://images.unsplash.com/photo-1622206151234-c963a33cdf61?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
+    imageUrl: "https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
     growingConditions: {
       temperature: "45-75°F (7-24°C)",
       waterNeeds: "Regular, keep soil moist",
@@ -44,7 +44,7 @@ export const crops: Crop[] = [
     scientificName: "Cucumis sativus",
     family: "Cucurbitaceae",
     description: "Cucumbers are warm-season vining vegetables that produce crisp, refreshing fruits. They can be grown on the ground or trained up trellises to save space and produce straight fruits.",
-    imageUrl: "https://images.unsplash.com/photo-1591124213179-a11dc40686a6?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
+    imageUrl: "https://images.unsplash.com/photo-1604977042946-1eecc30f269e?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
     growingConditions: {
       temperature: "60-90°F (15-32°C)",
       waterNeeds: "High, needs consistent moisture",
@@ -116,7 +116,7 @@ export const crops: Crop[] = [
     scientificName: "Cucurbita pepo",
     family: "Cucurbitaceae",
     description: "Zucchini is a summer squash that grows on bushy plants rather than vines. It produces abundantly in warm weather and should be harvested when fruits are young and tender, usually 6-8 inches long.",
-    imageUrl: "https://images.unsplash.com/photo-1581256932435-aa33427db86f?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
+    imageUrl: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
     growingConditions: {
       temperature: "65-85°F (18-29°C)",
       waterNeeds: "Moderate to high",
@@ -152,7 +152,7 @@ export const crops: Crop[] = [
     scientificName: "Ocimum basilicum",
     family: "Lamiaceae",
     description: "Basil is a tender herb with aromatic leaves used in many cuisines, especially Italian. It comes in many varieties including sweet, Thai, lemon, and purple basil, each with their own distinct flavor profile.",
-    imageUrl: "https://images.unsplash.com/photo-1606166325695-ce4d64e37e7e?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
+    imageUrl: "https://images.unsplash.com/photo-1600788886242-5c96aabe3757?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
     growingConditions: {
       temperature: "65-85°F (18-29°C)",
       waterNeeds: "Moderate",
@@ -170,7 +170,7 @@ export const crops: Crop[] = [
     scientificName: "Allium cepa",
     family: "Amaryllidaceae",
     description: "Onions are cool-season vegetables grown for their edible bulbs. They can be sweet, pungent, or mild depending on variety, and come in colors including yellow, red, and white.",
-    imageUrl: "https://images.unsplash.com/photo-1618512496518-b8dd21a2575b?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
+    imageUrl: "https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
     growingConditions: {
       temperature: "55-75°F (13-24°C)",
       waterNeeds: "Moderate",

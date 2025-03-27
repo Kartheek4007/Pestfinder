@@ -114,7 +114,7 @@ export const pests: Pest[] = [
     category: "Mite",
     severity: "Medium",
     description: "Spider mites are tiny arachnids that feed on plant cells, causing stippling on leaves. They thrive in hot, dry conditions and can reproduce rapidly, with populations exploding in just a few weeks. They create fine webbing on plants when populations are high.",
-    imageUrl: "https://images.unsplash.com/photo-1565131573006-1fccf5806574?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
+    imageUrl: "https://images.unsplash.com/photo-1627664819818-e147d6221422?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
     damageSigns: [
       "Fine stippling or speckling on leaves",
       "Yellowing or bronzing of foliage",
@@ -192,7 +192,7 @@ export const pests: Pest[] = [
     category: "Beetle",
     severity: "High",
     description: "Cucumber beetles are serious pests of cucurbit crops. They come in spotted and striped varieties, both about 1/4 inch long. Beyond direct feeding damage, they transmit bacterial wilt disease, which can kill plants quickly. They overwinter as adults and emerge in spring to feed and lay eggs.",
-    imageUrl: "https://images.unsplash.com/photo-1575218790050-b32c0e4367e4?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
+    imageUrl: "https://images.unsplash.com/photo-1624516020689-36a2d5cd2bfc?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
     damageSigns: [
       "Chewed leaves, stems, and fruit",
       "Scarring on fruit surface",

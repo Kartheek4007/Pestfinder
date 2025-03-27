@@ -2,7 +2,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ThermometerIcon, DropletIcon, Sprout as SeedlingIcon } from "lucide-react";
+import { ArrowRight, ThermometerIcon, DropletIcon, Sprout } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Crop } from "@/data/types";
 
@@ -52,7 +52,7 @@ const CropCard = ({ crop, index }: CropCardProps) => {
             <span className="ml-1 font-medium">{crop.growingConditions.waterNeeds}</span>
           </div>
           <div className="flex items-center">
-            <SeedlingIcon className="w-4 h-4 mr-2 text-primary" />
+            <Sprout className="w-4 h-4 mr-2 text-primary" />
             <span className="text-muted-foreground">Best Soil: </span>
             <span className="ml-1 font-medium">{crop.growingConditions.soilType.join(", ")}</span>
           </div>
