@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp, InfoIcon, SprayIcon, LeafIcon } from "lucide-react";
+import { ChevronDown, ChevronUp, InfoIcon, LeafIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Pest, Pesticide } from "@/data/types";
 
@@ -90,7 +90,7 @@ const PestResult = ({ pest, recommendedPesticides, affectedCrops, confidence }: 
 
           <TabsContent value="treatment" className="space-y-4 animate-fade-in">
             <h4 className="font-medium flex items-center mb-2">
-              <SprayIcon className="h-4 w-4 mr-2 text-primary" />
+              <InfoIcon className="h-4 w-4 mr-2 text-primary" />
               Recommended Pesticides
             </h4>
             <div className="grid gap-3">

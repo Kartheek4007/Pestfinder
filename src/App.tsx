@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,32 +16,35 @@ const CropInfo = lazy(() => import("./pages/CropInfo"));
 const PestLibrary = lazy(() => import("./pages/PestLibrary"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
+// Create a client
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1">
-            <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/pest-detection" element={<PestDetection />} />
-                <Route path="/crop-info" element={<CropInfo />} />
-                <Route path="/pest-library" element={<PestLibrary />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </main>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <React.Fragment>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1">
+              <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/pest-detection" element={<PestDetection />} />
+                  <Route path="/crop-info" element={<CropInfo />} />
+                  <Route path="/pest-library" element={<PestLibrary />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </main>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </React.Fragment>
 );
 
 export default App;
