@@ -1,7 +1,7 @@
 
 import { useState } from "react";
-import { ImageUploader } from "@/components/ImageUploader";
-import { PestResult } from "@/components/PestResult";
+import ImageUploader from "@/components/ImageUploader";
+import PestResult from "@/components/PestResult";
 import { detectPestFromImage, DetectionResult } from "@/utils/pestDetectionService";
 import { Button } from "@/components/ui/button";
 import { Info, BugIcon, Upload, ArrowRight } from "lucide-react";

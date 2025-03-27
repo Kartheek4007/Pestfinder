@@ -2,7 +2,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ThermometerIcon, DropletIcon, SeedlingIcon } from "lucide-react";
+import { ArrowRight, ThermometerIcon, DropletIcon, Sprout as SeedlingIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Crop } from "@/data/types";
 

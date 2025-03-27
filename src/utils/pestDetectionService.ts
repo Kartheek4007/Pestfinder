@@ -1,5 +1,5 @@
 
-import { Pest } from "@/data/pests";
+import { Pest } from "@/data/types";
 import { pests } from "@/data/pests";
 import { pesticides, getPesticidesForPest } from "@/data/pesticides";
 import { Pesticide } from "@/data/types";
