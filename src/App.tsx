@@ -8,9 +8,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Index from "./pages/Index";
 
 // Lazy-loaded pages
-const Index = lazy(() => import("./pages/Index"));
 const PestDetection = lazy(() => import("./pages/PestDetection"));
 const CropInfo = lazy(() => import("./pages/CropInfo"));
 const PestLibrary = lazy(() => import("./pages/PestLibrary"));
