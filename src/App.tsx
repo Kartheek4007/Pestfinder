@@ -15,6 +15,7 @@ const PestDetection = lazy(() => import("./pages/PestDetection"));
 const CropInfo = lazy(() => import("./pages/CropInfo"));
 const CropDetail = lazy(() => import("./pages/CropDetail"));
 const PestLibrary = lazy(() => import("./pages/PestLibrary"));
+const PestDetail = lazy(() => import("./pages/PestDetail"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Create a client
@@ -37,6 +38,7 @@ const App = () => (
                   <Route path="/crop-info" element={<CropInfo />} />
                   <Route path="/crop-info/:id" element={<CropDetail />} />
                   <Route path="/pest-library" element={<PestLibrary />} />
+                  <Route path="/pest-library/:id" element={<PestDetail />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

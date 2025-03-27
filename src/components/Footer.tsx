@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { LeafIcon, Heart } from "lucide-react";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-secondary py-10 border-t">
       <div className="container px-4 md:px-6">
@@ -33,9 +31,6 @@ const Footer = () => {
         </div>
 
         <div className="mt-10 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {currentYear} PestPedia. All rights reserved.
-          </p>
           <div className="flex items-center text-sm text-muted-foreground">
             <span>Made with</span>
             <Heart className="h-4 w-4 mx-1 text-destructive" />

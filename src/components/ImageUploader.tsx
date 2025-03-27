@@ -14,6 +14,7 @@ const ImageUploader = ({ onImageSelected, isProcessing = false }: ImageUploaderP
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -52,10 +53,19 @@ const ImageUploader = ({ onImageSelected, isProcessing = false }: ImageUploaderP
     }
   };
 
+  const openCamera = () => {
+    if (cameraInputRef.current) {
+      cameraInputRef.current.click();
+    }
+  };
+
   const clearImage = () => {
     setSelectedImage(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
+    }
+    if (cameraInputRef.current) {
+      cameraInputRef.current.value = "";
     }
   };
 
@@ -90,7 +100,7 @@ const ImageUploader = ({ onImageSelected, isProcessing = false }: ImageUploaderP
           {isProcessing && (
             <div className="absolute inset-0 bg-black/10 backdrop-blur-[2px] flex items-center justify-center rounded-md">
               <div className="animate-pulse text-white font-medium flex flex-col items-center">
-                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mb-2"></div>
+                <div className="w-8 h-8 border-4 border-primary-foreground border-t-transparent rounded-full animate-spin mb-2"></div>
                 <span>Analyzing image...</span>
               </div>
             </div>
@@ -110,7 +120,7 @@ const ImageUploader = ({ onImageSelected, isProcessing = false }: ImageUploaderP
               <Upload className="h-4 w-4 mr-2" />
               Upload Image
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" onClick={openCamera}>
               <Camera className="h-4 w-4 mr-2" />
               Take Photo
             </Button>
@@ -120,6 +130,14 @@ const ImageUploader = ({ onImageSelected, isProcessing = false }: ImageUploaderP
             ref={fileInputRef}
             className="hidden"
             accept="image/*"
+            onChange={handleImageChange}
+          />
+          <input
+            type="file"
+            ref={cameraInputRef}
+            className="hidden"
+            accept="image/*"
+            capture="environment"
             onChange={handleImageChange}
           />
         </div>
