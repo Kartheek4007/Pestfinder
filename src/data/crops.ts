@@ -116,7 +116,7 @@ export const crops: Crop[] = [
     scientificName: "Cucurbita pepo",
     family: "Cucurbitaceae",
     description: "Zucchini is a summer squash that grows on bushy plants rather than vines. It produces abundantly in warm weather and should be harvested when fruits are young and tender, usually 6-8 inches long.",
-    imageUrl: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
+    imageUrl: "/lovable-uploads/a88c9a19-aa0b-4247-b204-34a2e1b3f9bf.png",
     growingConditions: {
       temperature: "65-85°F (18-29°C)",
       waterNeeds: "Moderate to high",
@@ -152,7 +152,7 @@ export const crops: Crop[] = [
     scientificName: "Ocimum basilicum",
     family: "Lamiaceae",
     description: "Basil is a tender herb with aromatic leaves used in many cuisines, especially Italian. It comes in many varieties including sweet, Thai, lemon, and purple basil, each with their own distinct flavor profile.",
-    imageUrl: "https://images.unsplash.com/photo-1600788886242-5c96aabe3757?auto=format&q=75&fit=crop&crop=entropy&w=400&h=400",
+    imageUrl: "/lovable-uploads/2d49e2f8-1fd9-4aa6-b59e-61e213380634.png",
     growingConditions: {
       temperature: "65-85°F (18-29°C)",
       waterNeeds: "Moderate",

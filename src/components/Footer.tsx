@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { LeafIcon, Heart } from "lucide-react";
+import { LeafIcon } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -27,14 +27,6 @@ const Footer = () => {
                 Phone: +91 9640012290
               </li>
             </ul>
-          </div>
-        </div>
-
-        <div className="mt-10 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center text-sm text-muted-foreground">
-            <span>Made with</span>
-            <Heart className="h-4 w-4 mx-1 text-destructive" />
-            <span>for sustainable agriculture</span>
           </div>
         </div>
       </div>
