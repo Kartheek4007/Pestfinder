@@ -1,9 +1,8 @@
-
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronRightIcon, LeafIcon, BugIcon, SearchIcon, CalendarIcon, SprayCanIcon as SprayIcon, LayoutGridIcon, PlantsIcon } from "lucide-react";
+import { ChevronRightIcon, LeafIcon, BugIcon, SearchIcon, CalendarIcon, SprayCanIcon as SprayIcon, LayoutGridIcon, Leaf } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Index = () => {
@@ -267,7 +266,7 @@ const Index = () => {
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-delay-300 animate-float-slow">
             <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:translate-y-[-5px]">
               <div className="p-3 rounded-full bg-primary/10 w-fit mx-auto mb-4">
-                <PlantsIcon className="h-6 w-6 text-primary" />
+                <Leaf className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-lg font-medium mb-2">Sustainable Farming</h3>
               <p className="text-sm text-muted-foreground">
