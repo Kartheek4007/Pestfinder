@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-smooth",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isScrolled 
           ? "bg-white/80 backdrop-blur-md border-b shadow-soft" 
           : "bg-transparent"
@@ -65,7 +65,7 @@ const Header = () => {
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? 
-                <X className="h-5 w-5 transition-transform duration-300 rotate-90 animate-in" /> : 
+                <X className="h-5 w-5 transition-transform duration-300 rotate-90" /> : 
                 <Menu className="h-5 w-5 transition-transform duration-300 hover:scale-110" />
               }
             </Button>
@@ -85,8 +85,8 @@ const Header = () => {
                           className={cn(
                             "flex items-center px-4 py-3 rounded-md transition-all duration-300",
                             location.pathname === item.path
-                              ? "bg-primary/10 text-primary font-medium translate-x-2"
-                              : "text-foreground hover:bg-secondary hover:translate-x-1"
+                              ? "bg-primary/10 text-primary font-medium transform translate-x-2"
+                              : "text-foreground hover:bg-secondary hover:transform hover:translate-x-1"
                           )}
                         >
                           <span className="mr-2">{item.icon}</span>
@@ -111,10 +111,10 @@ const Header = () => {
                   <Link
                     to={item.path}
                     className={cn(
-                      "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-all duration-300",
+                      "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 group",
                       location.pathname === item.path
-                        ? "bg-primary/10 text-primary scale-105"
-                        : "text-foreground hover:bg-secondary hover:scale-105"
+                        ? "bg-primary/10 text-primary transform scale-105"
+                        : "text-foreground hover:bg-secondary hover:transform hover:scale-105"
                     )}
                   >
                     <span className="transition-transform duration-300 group-hover:rotate-12">{item.icon}</span>
