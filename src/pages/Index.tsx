@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronRightIcon, LeafIcon, BugIcon, SearchIcon, CalendarIcon, SprayCanIcon as SprayIcon, LayoutGridIcon, Leaf } from "lucide-react";
+import { ChevronRightIcon, BugIcon, SearchIcon, CalendarIcon, SprayCanIcon as SprayIcon, LayoutGridIcon, Leaf } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Index = () => {
@@ -47,7 +47,7 @@ const Index = () => {
       link: "/pest-library"
     },
     {
-      icon: <LeafIcon className="h-8 w-8 text-primary" />,
+      icon: <Leaf className="h-8 w-8 text-primary" />,
       title: "Crop Information",
       description: "Access detailed growing guides for common crops and learn which pests typically affect them.",
       link: "/crop-info"
