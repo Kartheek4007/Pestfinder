@@ -1,296 +1,277 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronRightIcon, BugIcon, SearchIcon, CalendarIcon, SprayCanIcon as SprayIcon, LayoutGridIcon, Leaf } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { CameraIcon, BookOpenIcon, Leaf, AlertTriangle, TrendingUp, Clock, Droplets, Sun } from "lucide-react";
+import { crops } from "@/data/crops";
+import { pests } from "@/data/pests";
 
 const Index = () => {
-  const featuresRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const pestDetectionRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px"
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
-        }
-      });
-    }, observerOptions);
-
-    // Observe all sections
-    [heroRef, featuresRef, pestDetectionRef, ctaRef].forEach(ref => {
-      if (ref.current) observer.observe(ref.current);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const features = [
-    {
-      icon: <BugIcon className="h-8 w-8 text-primary" />,
-      title: "Pest Identification",
-      description: "Upload photos of insects or plant damage to quickly identify common agricultural pests.",
-      link: "/pest-detection"
-    },
-    {
-      icon: <SprayIcon className="h-8 w-8 text-primary" />,
-      title: "Treatment Recommendations",
-      description: "Get tailored pesticide and control method suggestions for any detected pest.",
-      link: "/pest-library"
-    },
-    {
-      icon: <Leaf className="h-8 w-8 text-primary" />,
-      title: "Crop Information",
-      description: "Access detailed growing guides for common crops and learn which pests typically affect them.",
-      link: "/crop-info"
-    },
-    {
-      icon: <CalendarIcon className="h-8 w-8 text-primary" />,
-      title: "Seasonal Planning",
-      description: "Understand which crops to plant each season and what pest challenges to expect.",
-      link: "/crop-info"
-    }
+  const featuredCrops = crops.slice(0, 6);
+  const commonPests = pests.slice(0, 4);
+  
+  const currentMonth = new Date().getMonth();
+  const currentSeason = currentMonth >= 2 && currentMonth <= 4 ? "Spring" : 
+                       currentMonth >= 5 && currentMonth <= 8 ? "Summer" : "Fall";
+  
+  const seasonalCrops = crops.filter(crop => crop.growingSeason.includes(currentSeason));
+  
+  const quickStats = [
+    { label: "Crop Varieties", value: crops.length, icon: <Leaf className="h-5 w-5" /> },
+    { label: "Identified Pests", value: pests.length, icon: <AlertTriangle className="h-5 w-5" /> },
+    { label: "Growing Seasons", value: "4", icon: <Sun className="h-5 w-5" /> },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-32 pb-20 px-4 md:px-6 relative opacity-0 transition-all duration-700 ease-smooth">
-        <div className="absolute inset-0 bg-gradient-to-b from-accent/30 to-transparent -z-10" />
-        <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5 -z-10" />
-        <div className="container max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight animate-float-slow">
-                Smart Pest Detection & Crop Management
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-lg animate-delay-100 animate-float-slow">
-                Identify pests through image recognition, get precise treatment recommendations, and learn best practices for your crops.
-              </p>
-              <div className="flex flex-wrap gap-4 animate-delay-200 animate-float-slow">
-                <Link to="/pest-detection">
-                  <Button size="lg" className="group transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                    Identify a Pest
-                    <SearchIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-                <Link to="/crop-info">
-                  <Button size="lg" variant="outline" className="group transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
-                    Explore Crop Information
-                    <ChevronRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            <div className="relative rounded-xl overflow-hidden animate-delay-300 animate-float-slow">
-              <div className="absolute inset-0 bg-black/5 backdrop-blur-sm z-10 flex items-center justify-center">
-                <div className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-soft max-w-sm transform transition-all duration-500 hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2">Advanced Pest Recognition</h3>
-                  <p className="text-muted-foreground">
-                    Our system can identify hundreds of common agricultural pests with high accuracy.
-                  </p>
-                </div>
-              </div>
-              <img 
-                src="https://images.unsplash.com/photo-1498936178812-4b2e558d2937" 
-                alt="Pest detection illustration" 
-                className="w-full h-auto rounded-xl object-cover min-h-[400px] transition-transform duration-700 hover:scale-110"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section ref={featuresRef} className="py-20 px-4 md:px-6 bg-secondary relative opacity-0 transition-all duration-700 ease-smooth">
-        <div className="absolute top-0 w-full overflow-hidden leading-0">
-          <svg 
-            className="relative block w-full h-10 text-background" 
-            data-name="Layer 1" 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 1200 120" 
-            preserveAspectRatio="none"
-          >
-            <path 
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              className="fill-background"
-            ></path>
-          </svg>
-        </div>
+      <section className="pt-24 pb-12 px-4 md:px-6 bg-gradient-to-b from-primary/5 to-background">
         <div className="container max-w-6xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 animate-float-slow">
-              Comprehensive Pest & Crop Management
-            </h2>
-            <p className="text-lg text-muted-foreground animate-delay-100 animate-float-slow">
-              Our platform combines cutting-edge technology with agricultural expertise to help you identify and manage pests effectively.
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+              Smart Agriculture Platform
+            </h1>
+            <p className="text-lg text-muted-foreground mb-8">
+              Identify pests instantly, discover optimal growing conditions, and protect your crops with expert guidance.
             </p>
+            
+            {/* Quick Action Buttons */}
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/pest-detection">
+                <Button size="lg" className="gap-2">
+                  <CameraIcon className="h-5 w-5" />
+                  Detect Pest Now
+                </Button>
+              </Link>
+              <Link to="/pest-library">
+                <Button size="lg" variant="outline" className="gap-2">
+                  <AlertTriangle className="h-5 w-5" />
+                  Browse Pests
+                </Button>
+              </Link>
+              <Link to="/crop-info">
+                <Button size="lg" variant="outline" className="gap-2">
+                  <BookOpenIcon className="h-5 w-5" />
+                  Explore Crops
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {features.map((feature, index) => (
-              <Card 
-                key={index} 
-                className="transition-all duration-500 hover:shadow-lg hover:translate-y-[-5px] border-2 hover:border-primary/20 animate-delay"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <CardContent className="p-6">
-                  <div className="flex flex-col h-full">
-                    <div className="p-3 rounded-full bg-primary/10 w-fit mb-4 transform transition-transform duration-500 hover:rotate-12">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground mb-4 flex-grow">{feature.description}</p>
-                    <Link to={feature.link} className="mt-auto">
-                      <Button variant="ghost" className="p-0 h-auto group overflow-hidden">
-                        <span className="relative inline-block transition-transform duration-300 group-hover:translate-x-2">
-                          Learn more
-                          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
-                        </span>
-                        <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
-                      </Button>
-                    </Link>
+          {/* Quick Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {quickStats.map((stat, index) => (
+              <Card key={index}>
+                <CardContent className="p-6 text-center">
+                  <div className="flex items-center justify-center gap-2 mb-2 text-primary">
+                    {stat.icon}
+                    <div className="text-3xl font-bold">{stat.value}</div>
                   </div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
-        <div className="absolute bottom-0 w-full overflow-hidden leading-0 transform rotate-180">
-          <svg 
-            className="relative block w-full h-10 text-background" 
-            data-name="Layer 1" 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 1200 120" 
-            preserveAspectRatio="none"
-          >
-            <path 
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              className="fill-background"
-            ></path>
-          </svg>
+      </section>
+
+      {/* Common Pests to Watch */}
+      <section className="py-16 px-4 md:px-6 bg-secondary/30">
+        <div className="container max-w-6xl mx-auto">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight mb-2">Common Pests to Watch</h2>
+              <p className="text-muted-foreground">Identify and manage these frequent garden threats</p>
+            </div>
+            <Link to="/pest-library">
+              <Button variant="ghost">View All Pests →</Button>
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {commonPests.map((pest) => (
+              <Link key={pest.id} to={`/pest/${pest.id}`}>
+                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:translate-y-[-4px]">
+                  <CardContent className="p-4">
+                    <div className="aspect-square rounded-lg overflow-hidden mb-4 bg-muted">
+                      <img 
+                        src={pest.imageUrl} 
+                        alt={pest.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-semibold">{pest.name}</h3>
+                        <Badge variant={pest.severity === "High" ? "destructive" : "secondary"}>
+                          {pest.severity}
+                        </Badge>
+                      </div>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {pest.description}
+                      </p>
+                      <div className="text-xs text-muted-foreground pt-2">
+                        Affects: {pest.affectedCrops.slice(0, 2).join(", ")}
+                        {pest.affectedCrops.length > 2 && ` +${pest.affectedCrops.length - 2} more`}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Pest Detection Preview */}
-      <section ref={pestDetectionRef} className="py-20 px-4 md:px-6 opacity-0 transition-all duration-700 ease-smooth">
+      {/* Popular Crops Section */}
+      <section className="py-16 px-4 md:px-6">
         <div className="container max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
-            <div className="lg:col-span-2 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight animate-float-slow">
-                Instant Pest Identification Technology
-              </h2>
-              <p className="text-lg text-muted-foreground animate-delay-100 animate-float-slow">
-                Upload an image of a pest or affected plant, and our AI-powered system will identify the pest and provide tailored treatment recommendations.
-              </p>
-              <Link to="/pest-detection">
-                <Button className="group animate-pulse-subtle animate-delay-200 transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                  Try Pest Detection
-                  <SearchIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight mb-2">Popular Crops</h2>
+              <p className="text-muted-foreground">Complete growing guides and pest management info</p>
+            </div>
+            <Link to="/crop-info">
+              <Button variant="ghost">View All Crops →</Button>
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredCrops.map((crop) => (
+              <Link key={crop.id} to={`/crop/${crop.id}`}>
+                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:translate-y-[-4px]">
+                  <CardContent className="p-4">
+                    <div className="aspect-video rounded-lg overflow-hidden mb-4 bg-muted">
+                      <img 
+                        src={crop.imageUrl} 
+                        alt={crop.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-lg">{crop.name}</h3>
+                      <p className="text-sm italic text-muted-foreground">{crop.scientificName}</p>
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {crop.growingSeason.map((season) => (
+                          <Badge key={season} variant="outline" className="text-xs">
+                            {season}
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="pt-2 space-y-1 text-xs text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-3 w-3" />
+                          <span>{crop.daysToMaturity}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Droplets className="h-3 w-3" />
+                          <span>{crop.growingConditions.waterNeeds}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Seasonal Guide */}
+      <section className="py-16 px-4 md:px-6 bg-accent/20">
+        <div className="container max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <Badge className="mb-4">{currentSeason} Season</Badge>
+            <h2 className="text-3xl font-bold tracking-tight mb-2">What to Plant This {currentSeason}</h2>
+            <p className="text-muted-foreground">Optimal crops for the current growing season</p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {seasonalCrops.slice(0, 5).map((crop) => (
+              <Link key={crop.id} to={`/crop/${crop.id}`}>
+                <Card className="hover:shadow-md transition-all duration-300">
+                  <CardContent className="p-4 text-center">
+                    <div className="aspect-square rounded-lg overflow-hidden mb-3 bg-muted">
+                      <img 
+                        src={crop.imageUrl} 
+                        alt={crop.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h4 className="font-medium text-sm">{crop.name}</h4>
+                    <p className="text-xs text-muted-foreground mt-1">{crop.daysToMaturity}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+          
+          {seasonalCrops.length > 5 && (
+            <div className="text-center mt-6">
+              <Link to="/crop-info">
+                <Button variant="outline">
+                  View All {currentSeason} Crops ({seasonalCrops.length})
                 </Button>
               </Link>
             </div>
-            <div className="lg:col-span-3 relative">
-              <div className="p-2 border rounded-xl glass-card shadow-glass overflow-hidden transform transition-all duration-500 hover:shadow-xl animate-float-slow">
-                <img 
-                  src="https://images.unsplash.com/photo-1465379944081-7f47de8d74ac" 
-                  alt="Pest detection example" 
-                  className="w-full h-auto rounded-lg shadow-sm object-cover max-h-[400px] transition-transform duration-700 hover:scale-105"
-                />
-                <div className="mt-4 p-4 bg-background rounded-lg shadow-soft">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="font-medium text-lg">Detected: Colorado Potato Beetle</div>
-                    <div className="text-sm px-2 py-1 bg-primary/20 text-primary rounded-full animate-pulse-subtle">95% confidence</div>
+          )}
+        </div>
+      </section>
+
+      {/* Quick Tips */}
+      <section className="py-16 px-4 md:px-6">
+        <div className="container max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">Essential Growing Tips</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Leaf className="h-6 w-6 text-primary" />
                   </div>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    A serious pest of potato crops that can completely defoliate plants.
-                  </p>
-                  <div className="flex gap-2 flex-wrap">
-                    <div className="text-xs px-2 py-1 bg-secondary rounded-full transition-all duration-300 hover:bg-primary/20 hover:text-primary">Affected: Potato, Tomato, Eggplant</div>
-                    <div className="text-xs px-2 py-1 bg-secondary rounded-full transition-all duration-300 hover:bg-primary/20 hover:text-primary">Treatment: Crop rotation, Neem oil</div>
+                  <div>
+                    <h3 className="font-semibold mb-2">Companion Planting</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Plant compatible crops together to naturally deter pests and improve yields. Basil with tomatoes, marigolds with vegetables.
+                    </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              </CardContent>
+            </Card>
 
-      {/* CTA Section */}
-      <section ref={ctaRef} className="py-20 px-4 md:px-6 bg-primary/5 relative opacity-0 transition-all duration-700 ease-smooth">
-        <div className="absolute top-0 w-full overflow-hidden leading-0">
-          <svg 
-            className="relative block w-full h-10 text-background" 
-            data-name="Layer 1" 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 1200 120" 
-            preserveAspectRatio="none"
-          >
-            <path 
-              d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-              className="fill-background"
-            ></path>
-          </svg>
-        </div>
-        <div className="container max-w-6xl mx-auto text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 animate-float-slow">
-              Ready to improve your crop management?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 animate-delay-100 animate-float-slow">
-              Start using our comprehensive platform to identify pests, get treatment recommendations, and learn best practices for your crops.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center animate-delay-200 animate-float-slow">
-              <Link to="/pest-detection">
-                <Button size="lg" className="group transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                  Identify a Pest Now
-                  <SearchIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-              <Link to="/crop-info">
-                <Button size="lg" variant="outline" className="group transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]">
-                  Browse Crop Information
-                  <ChevronRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-delay-300 animate-float-slow">
-            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:translate-y-[-5px]">
-              <div className="p-3 rounded-full bg-primary/10 w-fit mx-auto mb-4">
-                <Leaf className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-medium mb-2">Sustainable Farming</h3>
-              <p className="text-sm text-muted-foreground">
-                Learn eco-friendly pest management techniques that maintain soil health and biodiversity.
-              </p>
-            </div>
-            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:translate-y-[-5px]">
-              <div className="p-3 rounded-full bg-primary/10 w-fit mx-auto mb-4">
-                <BugIcon className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-medium mb-2">Natural Predators</h3>
-              <p className="text-sm text-muted-foreground">
-                Discover how to attract beneficial insects that naturally control common garden pests.
-              </p>
-            </div>
-            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:translate-y-[-5px]">
-              <div className="p-3 rounded-full bg-primary/10 w-fit mx-auto mb-4">
-                <LayoutGridIcon className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-medium mb-2">Companion Planting</h3>
-              <p className="text-sm text-muted-foreground">
-                Find the perfect plant companions to naturally deter pests and improve crop yields.
-              </p>
-            </div>
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <TrendingUp className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">Crop Rotation</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Rotate crops annually to prevent soil depletion and reduce pest buildup. Never plant the same family in the same spot.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <AlertTriangle className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">Early Detection</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Inspect plants regularly for early signs of pests. Quick action prevents small problems from becoming infestations.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
